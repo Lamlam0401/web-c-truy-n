@@ -1,0 +1,56 @@
+doctype html
+html(lang="vi")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title= title
+    link(rel="stylesheet", href="/css/home.css")
+  body
+    // Header
+    header.header
+      .left
+        img.logo-img(src="/imgs/logo.png", alt="Dreamland logo")
+        h1.logo Dreamland
+      .center
+        form.search(action="/home", method="get")
+          input(type="text", name="q", placeholder="Tìm kiếm truyện...")
+          button(type="submit") 🔍
+      .right
+        a.addStory-btn(href="/addStory")  Đăng truyện
+        a.login-btn(href="#", onclick="logout()") Đăng xuất
+        a.userList-btn(href="#", onclick="userList()") userList
+
+    // Nội dung chính
+    main.main-container
+      .content
+        if stories && stories.length
+          h2.title Danh sách truyện
+          .story-list
+            each story in stories
+              a.story-card(href=`/story/${story._id}`)
+                img(src=`/${story.cover}`, alt=story.title)
+                h3= story.title
+        else
+          p.empty Không có truyện nào để hiển thị.
+
+      // Ô bên phải: Truyện đã đọc gần đây
+      aside.sidebar
+        h2.title Truyện đã đọc gần đây
+        ul.recent-list
+          li Truyện 1
+          li Truyện 2
+          li Truyện 3
+          li Truyện 4
+          li Truyện 5
+
+    footer.footer
+      p © 2025 Dreamland - Website đọc truyện trực tuyến.
+
+    script.
+      function logout() {
+        localStorage.removeItem('token');
+        window.location.href = '/';
+      }
+      function userList() {
+        window.location.href = '/userList';
+      }

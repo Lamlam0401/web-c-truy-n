@@ -1,0 +1,31 @@
+doctype html
+html(lang="vi")
+  head
+    meta(charset="UTF-8")
+    title Danh sách thành viên
+    link(rel="stylesheet", href="/css/userList.css")
+  body
+    .container
+      h2 Danh sách thành viên
+      p Xin chào #{username} (Admin)
+      button.add-btn(onclick="window.location.href='/home'") ← Quay lại trang chủ
+       button.add-btn(onclick="window.location.href='/signup'") ← Đăng kí tài khoản mới
+      table
+        thead
+          tr
+            th Username
+            th Role
+            th Action
+        tbody
+          each user in users
+            tr
+              td= user.username
+              td
+                form(action=`/userList/edit/${user.username}`, method="POST")
+                  input(type="text", name="role", value=user.role)
+                  button(type="submit") Lưu
+              td
+                form(action=`/userList/delete/${user.username}`, method="POST", onsubmit="return confirm('Bạn có chắc muốn xóa?')")
+                  button.delete(type="submit") Xóa
+
+    footer.footer © 2025 Dreamland - Quản lý người dùng

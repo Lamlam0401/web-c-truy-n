@@ -1,0 +1,94 @@
+/* Reset mặc định */
+body, h2, form, input, button, p {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Toàn trang */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #f7f7f7;
+}
+
+/* Khung đăng nhập */
+form {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 300px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Ô nhập liệu */
+label {
+  margin-top: 10px;
+  color: #333;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+  margin-top: 5px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #007bff;
+}
+
+/* Nút đăng nhập */
+button[type="submit"] {
+  margin-top: 15px;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button[type="submit"]:hover {
+  background: #0056b3;
+}
+
+/* Nút đăng ký */
+#signupBtn {
+  margin-top: 10px;
+  padding: 8px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 300px;
+  transition: background 0.3s;
+}
+
+#signupBtn:hover {
+  background: #1e7e34;
+}
+
+/* Thông báo lỗi */
+#errorMessage {
+  margin-top: 10px;
+  color: red;
+  text-align: center;
+}

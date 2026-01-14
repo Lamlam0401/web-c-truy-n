@@ -1,0 +1,20 @@
+doctype html
+html(lang="vi")
+  head
+    meta(charset="UTF-8")
+    title Đăng truyện mới
+    link(rel="stylesheet", href="/css/addStory.css")
+  body
+    h2 Đăng truyện mới
+    form(action="/addStory" method="POST" enctype="multipart/form-data")
+      label(for="title") Tên truyện:
+      input(type="text" name="title" required)
+      br
+      label(for="cover") Ảnh bìa:
+      input(type="file" name="cover" accept="image/*" required)
+      br
+      label(for="content") Nội dung:
+      textarea(name="content" rows="10" cols="50" required)
+      br
+      button(type="submit") Đăng truyện
+      button(type="button" onclick="window.location.href='/home'") ← Quay lại

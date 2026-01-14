@@ -1,0 +1,247 @@
+/* Reset mặc định */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Toàn trang */
+body {
+  background-color: #f0f2f5; /* nền nhạt kiểu Facebook */
+  color: #1c1e21;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  background-color: #1877f2; /* xanh Facebook */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Logo */
+.header .left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header .logo-img {
+  width: 40px;
+  height: 40px;
+}
+
+.header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Thanh tìm kiếm */
+.header .center form {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 20px;
+  padding: 5px 10px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.header .center input {
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  width: 200px;
+  font-size: 0.95rem;
+}
+
+.header .center button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+/* Nút bên phải */
+.header .right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header .right a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: opacity 0.3s;
+}
+
+.header .right a:hover {
+  opacity: 0.8;
+}
+
+/* Nội dung chính */
+.content {
+  flex: 1;
+  padding: 30px;
+  max-width: 1000px;
+  margin: auto;
+  padding-bottom: 100px; /* tránh footer đè */
+}
+
+/* Tiêu đề danh sách */
+.title {
+  color: #1877f2;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Danh sách truyện */
+.story-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 truyện mỗi hàng */
+  gap: 30px;
+  justify-items: center;
+}
+
+/* Thẻ truyện */
+.story-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #1c1e21;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 90%;
+  max-width: 400px; /* Giới hạn chiều ngang của mỗi card */
+}
+
+.story-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.story-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.story-card h3 {
+  font-size: 1.1rem;
+  padding: 12px;
+  text-align: center;
+}
+
+/* Khi không có truyện */
+.empty {
+  text-align: center;
+  color: gray;
+  margin-top: 30px;
+}
+
+/* Footer cố định */
+.footer {
+  background-color: #1877f2;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Hiệu ứng nút */
+button, .login-btn, .userList-btn {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: #1877f2;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: background 0.3s;
+}
+
+button:hover, .login-btn:hover, .userList-btn:hover {
+  background: #145dbf;
+}
+
+/* Responsive: Màn hình nhỏ chỉ 1 truyện mỗi hàng */
+@media (max-width: 700px) {
+  .story-list {
+    grid-template-columns: 1fr;
+  }
+}
+/* --- Bố cục tổng thể với ô truyện bên phải --- */
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  position: relative;
+}
+
+/* Nội dung chính giữ nguyên giữa màn hình */
+.content {
+  flex: 1;
+  max-width: 1000px;
+}
+
+/* Ô truyện đã đọc gần đây */
+.sidebar {
+  position: fixed;
+  right: 20px;
+  top: 100px; /* cách header 1 chút */
+  width: 220px;
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.sidebar .title {
+  color: #1877f2;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.recent-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recent-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+.recent-list li:last-child {
+  border-bottom: none;
+}
+
+/* Khi màn hình nhỏ thì ẩn sidebar */
+@media (max-width: 900px) {
+  .sidebar {
+    display: none;
+  }
+}
+

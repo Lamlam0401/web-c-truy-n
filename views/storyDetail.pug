@@ -1,0 +1,46 @@
+doctype html
+html(lang="vi")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title= story.title
+    link(rel="stylesheet", href="/css/storyDetail.css")
+  body
+    // Thanh đầu trang
+    header.header
+      a.back-btn(href="/home") ⬅ Quay lại danh sách
+      h1.title= story.title
+
+    // Nội dung chính
+    main.content
+      if story.cover
+        img.cover(src=`/${story.cover}`, alt=story.title)
+      if story.content
+        p.description= story.content
+      else
+        p.description Nội dung đang được cập nhật...
+
+      hr
+
+      // Phần bình luận
+      section.comments
+        h2 Bình luận
+
+        if story.comments && story.comments.length
+          each cmt in story.comments
+            .comment
+              strong= cmt.username
+              span.date= ' (' + new Date(cmt.createdAt).toLocaleString('vi-VN') + ')'
+              p.text= cmt.text
+        else
+          p.no-comment Chưa có bình luận nào. Hãy là người đầu tiên bình luận nhé!
+
+        // Form gửi bình luận
+        form.comment-form(action=`/story/${story._id}/comment`, method="POST")
+          textarea(name="text",  placeholder="Nhập bình luận của bạn...")
+          br
+          button(type="submit") Gửi bình luận
+
+    // Chân trang
+    footer.footer
+      p © 2025 Dreamland

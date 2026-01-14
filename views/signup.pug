@@ -1,0 +1,71 @@
+doctype html
+html(lang="vi")
+  head
+    meta(charset="UTF-8")
+    title Đăng ký tài khoản
+  body
+    h2 Đăng ký tài khoản
+    form(id="signupForm")
+      label(for="username") Tên đăng nhập:
+      input(type="text" name="username" required)
+      br
+      label(for="password") Mật khẩu:
+      input(type="password" name="password" required)
+      br
+      label(for="role") Vai trò (tùy chọn):
+      select(name="role")
+        option(value="user" selected) user
+        option(value="admin") admin
+      br
+      button(type="submit") Đăng ký
+    br
+    button(id="backBtn" type="button") Quay lại đăng nhập
+    p(id="message" style="color:green")
+    p(id="errorMessage" style="color:red")
+
+    script.
+      const form = document.getElementById('signupForm');
+      const message = document.getElementById('message');
+      const errorMessage = document.getElementById('errorMessage');
+      const backBtn = document.getElementById('backBtn');
+
+      // Sự kiện khi bấm nút đăng ký
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();// ngăn reload
+
+        const data = {
+          username: form.username.value,
+          password: form.password.value,
+          role: form.role.value
+        };
+
+        try {
+          const res = await fetch('/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+
+          const result = await res.json();
+
+          if (res.ok) {
+            message.textContent = result.message || 'Đăng ký thành công!';
+            errorMessage.textContent = '';
+            // Sau 1 giây, chuyển sang trang đăng nhập
+            setTimeout(() => {
+              window.location.href = '/';
+            }, 1000);
+          } else {
+            errorMessage.textContent = result.error || 'Đăng ký thất bại!';
+            message.textContent = '';
+          }
+        } catch (err) {
+          errorMessage.textContent = 'Không thể kết nối tới server!';
+          message.textContent = '';
+        }
+      });
+
+      // Nút quay lại đăng nhập
+      backBtn.addEventListener('click', () => {
+        window.location.href = '/';
+      });
